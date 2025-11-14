@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 .env
+coverage
+
+# Vite / build
+.vite
+
+# Entornos
+.env
+.env.local
+.env.*.local
 
 # Editor directories and files
 .vscode/*
