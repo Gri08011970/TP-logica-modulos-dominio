@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProductsPaginated } from "../services/products.js";
+import { getImageUrl } from "../services/imageUrl.js";
 
 const LIMIT = 6;
 
@@ -73,11 +74,13 @@ export default function CategoryDetailPage() {
             <article key={p.id} className="rounded-2xl border bg-white overflow-hidden">
               <Link to={`/producto/${p.id}`}>
                 <img
-                  src={p.image}
+                  src={getImageUrl(p.image)}
                   alt={p.name}
-                  className="w-full h-56 object-cover"
+                  className="w-full h-72 object-cover rounded-2xl border"
                   loading="lazy"
                 />
+
+
               </Link>
               <div className="p-3">
                 <h3 className="font-medium">{p.name}</h3>

@@ -20,7 +20,13 @@ export default function CartPage() {
 
   const [customer, setCustomer] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(user?.phone || "");
+
+useEffect(() => {
+  setPhone(user?.phone || "");
+}, [user]);
+
+
 
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");

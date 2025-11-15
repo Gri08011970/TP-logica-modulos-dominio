@@ -5,16 +5,24 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");   // ← NUEVO
   const [err, setErr] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setErr("");
     try {
-      await register({ name: name.trim(), email: email.trim(), password });
+      await register({
+        name: name.trim(),
+        email: email.trim(),
+        password,
+        phone: phone.trim(),   // ← NUEVO
+      });
+
       navigate("/");
     } catch (e) {
       setErr(e.message || "No se pudo registrar");
@@ -34,6 +42,7 @@ export default function RegisterPage() {
           autoComplete="name"
           required
         />
+
         <input
           className="input w-full"
           placeholder="tucorreo@mail.com"
@@ -43,6 +52,16 @@ export default function RegisterPage() {
           autoComplete="email"
           required
         />
+
+        <input
+          className="input w-full"
+          placeholder="Número de teléfono"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          autoComplete="tel"
+          required
+        />
+
         <input
           className="input w-full"
           placeholder="********"
@@ -52,10 +71,11 @@ export default function RegisterPage() {
           autoComplete="new-password"
           required
         />
+
         <button className="btn-primary w-full">Crear cuenta</button>
+
         {err && <p className="text-red-600 bg-red-50 rounded p-2">{err}</p>}
       </form>
     </section>
   );
 }
-

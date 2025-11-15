@@ -1,139 +1,289 @@
 # Grupo 8 – UTN CUDI – Tienda (SPA + API)
 ### Diplomatura Desarrollo Web I – 2025
 
-**Resumen:** Proyecto full‑stack con frontend SPA (Vite + React) y backend API (Node + Express). La **persistencia principal es MongoDB Atlas** vía Mongoose. Se mantiene un **modo alternativo JSON** solo para práctica/offline.
+**Resumen:** Proyecto full-stack con frontend SPA (Vite + React) y backend API (Node + Express).  
+La **persistencia principal es MongoDB Atlas** vía Mongoose.  
+Se mantiene un **modo alternativo con JSON** solo para práctica/offline.
 
 ---
 
-🚀 Demo en producción
+## 🚀 Demo en producción
 
-Proyecto desplegado en Railway (Backend + Frontend integrados).
-Usa MongoDB Atlas como base de datos principal (USE_MONGO=true).
+Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **MongoDB Atlas** como base de datos principal (`USE_MONGO=true`).
 
-🔗 App completa:
-👉 https://grupo8utn2025-production.up.railway.app
+- **App completa (Frontend + API en Railway)**  
+  👉 http://tp-logica-modulos-dominio-production.up.railway.app/
 
-🔗 API (endpoint de prueba):
-👉 https://grupo8utn2025-production.up.railway.app/api/products
+- **API base (producción)**  
+  👉 `https://tp-logica-modulos-dominio-production.up.railway.app/api`
 
-Permite probar el flujo completo:
+---
 
-Registro y login de usuarios
+## 🧱 Tecnologías principales
 
-CRUD de productos (modo administrador)
+**Frontend**
 
-Carrito y proceso de compra
+- Vite + React
+- React Router
+- Tailwind CSS (estilos utilitarios)
+- LocalStorage (persistencia del carrito)
 
-Cambio de estado de órdenes
+**Backend**
 
-⚙️ Despliegue en producción (Railway + MongoDB Atlas)
+- Node.js + Express
+- MongoDB Atlas + Mongoose
+- BcryptJS (hash de contraseñas)
+- JSON Web Tokens (JWT)
+- Dotenv (variables de entorno)
+- Nodemon (entorno de desarrollo)
 
-Configuración de entorno para el servicio en Railway:
+**Infraestructura**
 
+- Railway (deploy de frontend + backend en un mismo servicio)
+- MongoDB Atlas (base de datos en la nube)
+
+---
+
+## 🧩 Estructura del Proyecto
+
+Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
+
+```text
+TP-logica-modulos-dominio/
+├── backend/
+│   ├── index.mjs              # Punto de entrada de la API
+│   ├── db.mjs                 # Conexión a MongoDB
+│   ├── models/
+│   │   ├── product.mjs
+│   │   ├── order.mjs
+│   │   └── user.mjs
+│   ├── routes/
+│   │   ├── products.mjs
+│   │   ├── orders.mjs
+│   │   └── auth.mjs
+│   └── logs/                  # Logs de la API
+│
+├── public/
+│   ├── images/
+│   │   ├── hombre/
+│   │   ├── mujer/
+│   │   └── unisex/
+│   └── favicon-32.png
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── Pagination.jsx
+│   │   └── ...
+│   ├── pages/
+│   │   ├── HomePage.jsx
+│   │   ├── CategoriesPage.jsx
+│   │   ├── CategoryDetailPage.jsx
+│   │   ├── ProductDetailPage.jsx
+│   │   ├── CartPage.jsx
+│   │   ├── AdminProductsPage.jsx
+│   │   ├── AdminOrdersPage.jsx
+│   │   ├── LoginPage.jsx
+│   │   └── RegisterPage.jsx
+│   ├── services/
+│   │   ├── api.js             # Configuración Axios / fetch
+│   │   ├── products.js        # Llamadas a /api/products
+│   │   ├── orders.js          # Llamadas a /api/orders
+│   │   ├── auth.js            # Login / registro
+│   │   └── imageUrl.js        # Armado de URLs de imágenes
+│   ├── styles/
+│   │   └── index.css
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── scripts/
+│   └── migrate-from-json.mjs  # Script de migración desde db.json a MongoDB
+│
+├── docs/
+│   ├── Informe_BACKEND_Grupo8UTN2025.html
+│   └── Informe_FRONTEND_Grupo8UTN2025.html
+│
+├── .env.example
+├── package.json
+├── vite.config.js
+└── README.md
+⚙️ Configuración de entorno
+Backend – .env (local)
+Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
+
+env
+Copiar código
+# Puerto interno de la API
+PORT=4001
+
+# Activar MongoDB
+USE_MONGO=true
+
+# Cadena de conexión a MongoDB Atlas
+MONGO_URL=mongodb+srv://USUARIO:CONTRASEÑA@cluster0.xxxxxx.mongodb.net/NOMBRE_DB?retryWrites=true&w=majority
+
+# Origen permitido para CORS (frontend)
+FRONT_ORIGIN=http://localhost:5173
+
+# JWT
+JWT_SECRET=un-secreto-bien-largo-y-seguro
+JWT_EXPIRES_IN=1d
+
+# Admin por defecto
+ADMIN_EMAIL=admin@tienda.com
+
+# Logs
+LOG_ENABLED=true
+MORGAN_FORMAT=dev
+LOG_TO_FILE=false
+Frontend – .env (local)
+env
+Copiar código
+VITE_API_URL=http://localhost:4001/api
+Variables en producción (Railway)
+En Railway se usan las mismas claves, apuntando a producción. Ejemplo:
+
+env
+Copiar código
 USE_MONGO=true
 MONGO_URL=mongodb+srv://<usuario>:<password>@<cluster>/<nombreDB>?retryWrites=true&w=majority
-FRONT_ORIGIN=https://grupo8utn2025-production.up.railway.app
-CORS_ORIGIN=https://grupo8utn2025-production.up.railway.app
-VITE_API_URL=https://grupo8utn2025-production.up.railway.app/api
+FRONT_ORIGIN=http://tp-logica-modulos-dominio-production.up.railway.app/
+CORS_ORIGIN=http://tp-logica-modulos-dominio-production.up.railway.app/
+VITE_API_URL=http://tp-logica-modulos-dominio-production.up.railway.app/api
 JWT_SECRET=dev-super-secret
 ADMIN_EMAIL=admin@tienda.com
 LOG_ENABLED=true
 MORGAN_FORMAT=dev
 LOG_TO_FILE=false
+Estado típico del deploy:
 
-
-Estado actual del deploy:
-
+text
+Copiar código
 MongoDB conectado
 API escuchando en http://localhost:8080/api (USE_MONGO=true)
+🏃‍♀️ Puesta en marcha (local)
+Clonar el repo:
 
----
+bash
+Copiar código
+git clone https://github.com/Gri08011970/TP-logica-modulos-dominio.git
+cd TP-logica-modulos-dominio
+Instalar dependencias:
 
-## Tecnologías utilizadas
-- **Frontend:** Vite + React
-- **Backend:** Node.js + Express
-- **Base de datos (principal):** MongoDB Atlas (Mongoose)
-- **Autenticación:** JWT (signup/login), rol `admin` por `ADMIN_EMAIL`
-- **Scripts:** Migración desde `db.json` a Mongo
+bash
+Copiar código
+npm install
+Crear .env a partir de .env.example y completar:
 
----
+MONGO_URL
 
-## Comandos rápidos
+JWT_SECRET
 
-| Tarea | Comando |
-|------|---------|
-| Instalar dependencias | `npm install` |
-| Ejecutar en **Mongo (dev)** | `npm run dev` |
-| Migración **simulada** (JSON→Mongo) | `npm run migrate:json:dry` |
-| Migración **real** (JSON→Mongo) | `npm run migrate:json` |
-| Build (si aplica) | `npm run build` |
+etc.
 
----
+Ejecutar el entorno de desarrollo (API + frontend al mismo tiempo):
 
-## Configuración de entorno (`.env`)
+bash
+Copiar código
+npm run dev
+Se levanta:
 
-> **Mongo es el modo principal.** Solo definí `MONGO_URL` y dejá `USE_MONGO=true`.
+Frontend: http://localhost:5173
 
-```env
-USE_MONGO=true
-MONGO_URL=mongodb+srv://<usuario>:<password>@<cluster>/<nombreDB>?retryWrites=true&w=majority
-PORT=4001
-FRONT_ORIGIN=http://localhost:5173
-VITE_API_URL=http://localhost:4001/api
-JWT_SECRET=dev-super-secret
-ADMIN_EMAIL=admin@tienda.com
-```
+API: http://localhost:4001/api
 
-## Cómo correr el proyecto (Mongo — modo principal)
+🔄 Migración de datos desde db.json → Mongo
+La API puede levantar datos desde Mongo o desde db.json.
+En este proyecto, Mongo Atlas es el modo principal.
 
-1. Crear `.env` con las variables de arriba (pegá tu `MONGO_URL` de Atlas).  
-2. Instalar dependencias:
-   ```bash
-   npm install
-   ```
-3. Levantar entorno de desarrollo (API + Web):
-   ```bash
-   npm run dev
-   ```
-4. Verificar en consola del API:
-   ```
-   MongoDB conectado
-   API escuchando en http://localhost:4001/api (USE_MONGO=true)
-   ```
-5. Navegar:
-   - **Web**: `http://localhost:5173`
-   - **API**: `http://localhost:4001/api/products`
+Simulación (no escribe):
 
----
+bash
+Copiar código
+npm run migrate:json:dry
+Migración real:
 
-## Migración de datos desde `db.json` → Mongo
+bash
+Copiar código
+npm run migrate:json
+Esto crea/actualiza las colecciones users, products, orders en la base tp_grupal_utn.
 
-- **Simulación (no escribe):**
-  ```bash
-  npm run migrate:json:dry
-  ```
-- **Migración real:**
-  ```bash
-  npm run migrate:json
-  ```
-Esto crea/actualiza colecciones `users`, `products`, `orders`.
+🔌 Endpoints principales de la API
+GET /api/products
+Listado paginado de productos, con filtros por category, subcategory y name.
 
----
+GET /api/products/:id
+Detalle de producto.
 
-## Modo alternativo JSON (opcional)
+POST /api/products (solo admin)
+Alta de producto.
 
-> Solo para práctica/offline. 
+PUT /api/products/:id (solo admin)
+Modificación de producto.
 
-En `.env` podés conmutar:
+DELETE /api/products/:id (solo admin)
+Baja lógica / eliminación.
 
-```env
-USE_MONGO=false
-VITE_API_URL=http://localhost:4001/api
-```
+POST /api/orders
+Creación de una orden a partir del carrito.
 
-Luego `npm run dev`.
+GET /api/orders (solo admin)
+Listado de órdenes.
 
----
+POST /api/auth/login
+Login de usuario administrador.
+
+POST /api/auth/register
+Registro de nuevos usuarios.
+
+GET /api/images/...
+Servido estático de imágenes desde /public/images.
+
+🧩 Funcionalidades implementadas
+Catálogo de productos
+Paginación en Home y Categorías.
+
+Filtro por categoría (Mujer / Hombre / Unisex).
+
+Subfiltros (jeans, remeras, bermudas, vestidos, etc.).
+
+Vista de detalles con descripción, precio e imagen grande.
+
+Carrito de compras
+Agregar / quitar productos.
+
+Modificar cantidades.
+
+Cálculo de subtotal y total.
+
+Persistencia en localStorage.
+
+ABMC de productos (Admin)
+Alta, baja, modificación y consulta de productos.
+
+Validaciones básicas en el formulario (campos obligatorios).
+
+Integración directa con MongoDB (tp_grupal_utn.products).
+
+Previsualización de la imagen según la ruta relativa guardada.
+
+Órdenes
+Simulación de compra → se genera una orden en MongoDB.
+
+Visualización y cambio de estado de órdenes desde el panel de administración.
+
+Posibilidad de compra manual desde el admin (según consigna).
+
+Autenticación
+Login de administrador con JWT.
+
+Protección de rutas de administración.
+
+Asociación de órdenes al usuario logueado.
+
+
 
 ## 📷 Evidencias del funcionamiento (con MongoDB)
 
@@ -195,175 +345,56 @@ Luego `npm run dev`.
 
 ---
 
-## Credenciales de prueba
+🧪 Informes técnicos (BACKEND / FRONTEND)
 
-**Admin**
-- Email: `admin@tienda.com`
-- Password: `utn123`
+En docs/ se incluyen dos informes HTML:
 
-**Usuario**
-- Email: `griselmolina1970@gmail.com`
-- Password: `Juan1970`
+docs/Informe_BACKEND_Grupo8UTN2025.html
 
-> Recordatorio: el rol admin se asigna al email configurado en `ADMIN_EMAIL` del `.env`.
+docs/Informe_FRONTEND_Grupo8UTN2025.html
 
----
+Allí se detallan:
 
-## 📁 Estructura del Proyecto
+Decisiones de diseño
 
-A continuación se detalla la estructura principal del proyecto **Grupo8UTN2025**, organizada en frontend (SPA con React) y backend (API Node + Express + MongoDB), según lo trabajado en la Diplomatura UTN.
+Diagrama de módulos
 
-```text
-Grupo8UTN2025/
-├─ backend/                          🧠 Backend (API REST Node + Express)
-│  ├─ db.mjs                         → Configuración de conexión a MongoDB (usa MONGO_URL, USE_MONGO)
-│  ├─ index.mjs                      → Punto de entrada del servidor, rutas y modo JSON/Mongo
-│  ├─ models/                        🧾 Modelos de datos (MongoDB + Mongoose)
-│  │  ├─ order.mjs                   → Esquema y modelo de órdenes/compras
-│  │  ├─ product.mjs                 → Esquema y modelo de productos
-│  │  └─ user.mjs                    → Esquema y modelo de usuarios
-│  └─ routes/
-│     └─ mongoRouter.mjs             → Rutas de auth, productos y órdenes (modo Mongo principal)
-│
-├─ docs/                             📚 Documentación del proyecto
-│  └─ capturas/                      🖼️ Capturas usadas en el README y defensa
-│     ├─ 01-home.png
-│     ├─ 01-consesion.png
-│     ├─ 01-consesionadmin.png
-│     ├─ 02-formregistro.png
-│     ├─ 02-rta201logininmediato.png
-│     ├─ 03-productoscategoriahombre.png
-│     ├─ 03-productoscategoriamujer.png
-│     ├─ 03-productoscategoriaunisex.png
-│     ├─ 04-formautocompletadoparaeditar.png
-│     ├─ 04-alertaeliminar.png
-│     ├─ 04-formproductos-listado-crear.png
-│     ├─ 05-crearproductocamposobligatorios.png
-│     ├─ 06-editarproducto-200red.png
-│     ├─ 06-editarproductorespuesta200red.png
-│     ├─ 07-productoeliminarbermuda....png
-│     ├─ 07-productoeliminadorespuestared.png
-│     ├─ 07-desaparicionproductodellistado.png
-│     ├─ 08-carrito.png
-│     ├─ 08-productoagregadocarrito.png
-│     ├─ 09-checkout.png
-│     ├─ 09-comprafinalizada.png
-│     ├─ 10-compraslistado.png
-│     ├─ 11-cambioestadodesplegable.png
-│     ├─ 11-red200.png
-│     ├─ 12-modalcompramanual.png
-│     ├─ 12-compramanualred201.png
-│     └─ 13-mongidbconectado.png
-│
-├─ public/                           🌐 Archivos estáticos públicos
-│  ├─ images/                        → Imágenes de productos por categoría (hombre/mujer/unisex)
-│  │  ├─ hombre/...
-│  │  ├─ mujer/...
-│  │  └─ unisex/...
-│  └─ vite.svg
-│
-├─ scripts/                          🛠️ Utilidades
-│  └─ migrate-from-json.mjs          → Script para migrar datos de db.json a MongoDB
-│
-├─ src/                              💻 Frontend (SPA con React + Vite)
-│  ├─ assets/
-│  │  └─ react.svg
-│  ├─ components/                    🔁 Componentes reutilizables
-│  │  ├─ Footer.jsx                  → Pie de página
-│  │  ├─ Navbar.jsx                  → Menú principal + links + sesión
-│  │  ├─ Pagination.jsx              → Paginación de productos
-│  │  └─ ProductCard.jsx             → Tarjeta de producto (imagen, precio, CTA)
-│  ├─ context/                       🌍 Estado global
-│  │  ├─ AuthContext.jsx             → Manejo de sesión, JWT, usuario logueado
-│  │  └─ CartContext.jsx             → Manejo de carrito, totales, persistencia
-│  ├─ hooks/                         🧩 Custom hooks
-│  │  ├─ UseAuth.js                  → Hook para usar contexto de autenticación
-│  │  └─ UseFetch.js                 → Hook para requests reutilizables
-│  ├─ pages/                         📄 Vistas principales (rutas)
-│  │  ├─ HomePage.jsx                → Landing / categorías destacadas
-│  │  ├─ CategoriesPage.jsx          → Listado por categoría
-│  │  ├─ ProductDetailPage.jsx       → Detalle de producto + agregar al carrito
-│  │  ├─ CartPage.jsx                → Resumen de carrito + checkout
-│  │  ├─ LoginPage.jsx               → Inicio de sesión
-│  │  ├─ SignUpPage.jsx              → Registro de usuario
-│  │  ├─ AdminProductsPage.jsx       → ABM de productos (solo admin)
-│  │  ├─ AdminOrdersPage.jsx         → Gestión de órdenes (solo admin)
-│  │                
-│  ├─ services/                      🔌 Capa de APIs
-│  │  ├─ api.js                      → Config base (VITE_API_URL, headers)
-│  │  ├─ auth.js                     → Login, registro, perfil
-│  │  ├─ products.js                 → CRUD de productos
-│  │  ├─ orders.js                   → Órdenes de compra
-│  │  └─ profile.js                  → Datos del usuario
-│  ├─ styles/
-│  │  └─ index.css                   → Estilos globales (Tailwind + ajustes)
-│  ├─ App.jsx                        → Definición de rutas, layout general
-│  └─ main.jsx                       → Punto de entrada React
-│
-├─ .env.example                      🔐 Ejemplo de configuración (.env no se versiona)
-├─ .gitignore                        → Exclusión de .env, node_modules, logs, etc.
-├─ db.json                           🗃️ Dataset base (modo JSON legacy / respaldo)
-├─ index.html
-├─ package.json
-├─ package-lock.json
-├─ README.md
-├─ vite.config.json
-└─ eslint.config.js
+Esquema de datos
 
-## 📋 Conclusión — Cumplimiento de consignas y teoría vista
+Flujos principales de interacción
 
-Este proyecto integra de forma completa los contenidos teóricos y prácticos vistos durante la cursada de la Diplomatura UTN 2025, tanto en el **módulo Backend** como en el **módulo Frontend**.
+Justificación de tecnologías
 
-### 🔹 Backend — Node.js + Express + MongoDB
+✅ Conclusiones
 
-El desarrollo del backend se ajusta a todas las consignas del **Trabajo Práctico Integrador Backend 2025**:
+Este proyecto:
 
-- **Arquitectura modular**: uso de carpetas `models/`, `routes/` y archivos de inicialización `db.mjs` e `index.mjs`, según la estructura enseñada en el curso.
-- **Persistencia de datos**: implementación dual con `USE_MONGO` para alternar entre persistencia en **MongoDB Atlas** (modo principal) y **JSON local** (modo fallback).
-- **Modelado de datos con Mongoose**: se definen esquemas `User`, `Product` y `Order` que reflejan las relaciones y validaciones necesarias.
-- **Ruteo centralizado y middleware**: las rutas se concentran en `mongoRouter.mjs`, integrando controladores, validaciones y middleware de seguridad.
-- **Variables de entorno**: el archivo `.env` y su plantilla `.env.example` gestionan credenciales, CORS, JWT y configuración de API, siguiendo las buenas prácticas vistas.
-- **Migración de datos**: el script `migrate-from-json.mjs` automatiza el pasaje de datos entre persistencias, aplicando los conocimientos de CLI y manipulación de archivos.
-- **Logs y entorno controlado**: se utiliza `dotenv`, `morgan` y flags de entorno (`LOG_ENABLED`, `MORGAN_FORMAT`) como parte del enfoque de observabilidad.
+Reemplaza el archivo bd.json por una base MongoDB Atlas real.
 
-El backend demuestra dominio de los temas de **ruteo, middlewares, asincronismo, persistencia y validación de datos**.
+Centraliza la lógica de negocio en una API REST con módulos bien separados.
 
----
+Mantiene la cohesión entre capas (frontend, backend, dominio) y reduce el acoplamiento.
 
-### 🔹 Frontend — React + Vite + Tailwind
+Permite un despliegue cercano a un caso real de producción usando Railway + MongoDB Atlas.
 
-El frontend responde íntegramente a las consignas del **Trabajo Práctico Integrador Frontend 2025** y a la teoría de **componentización y manejo de estado global**:
+Estandariza el manejo de rutas de imágenes con un endpoint /api/images/... y una utilidad getImageUrl en el frontend.
 
-- **SPA (Single Page Application)** desarrollada con React y Vite, con estructura organizada en `components/`, `pages/`, `context/`, `hooks/` y `services/`.
-- **Consumo de API REST**: integración completa con el backend mediante `fetch` centralizado en `services/api.js`, respetando endpoints RESTful y métodos HTTP.
-- **Gestión de estado global**: uso de Context API (`AuthContext` y `CartContext`) y custom hooks (`useAuth`, `useFetch`) que implementan los patrones vistos en clase.
-- **Ruteo cliente**: navegación dinámica con `react-router-dom`, incluyendo rutas públicas, privadas y secciones de administrador.
-- **Diseño responsivo y moderno**: uso de Tailwind CSS según la teoría de maquetado adaptativo; el proyecto mantiene coherencia estética y jerarquías visuales claras.
-- **Formularios y validaciones**: implementación de formularios controlados para registro, login, carga y edición de productos.
-- **Flujo completo de usuario y admin**: registro, login, navegación, compra, visualización de pedidos, CRUD de productos y gestión de órdenes.
+👥 Créditos / Integrantes
 
-El frontend demuestra los conocimientos de **React Hooks, composición de componentes, contexto global, estilos con Tailwind y consumo de APIs REST**.
+Grupo 8 – UTN 2025
 
----
+Axel Chamorro
 
-### 🔹 Integración Fullstack
+Magalí Izaurralde
 
-La aplicación combina ambos módulos en un ecosistema unificado:
+Diego Farías
 
-- **Conexión fullstack**: `VITE_API_URL` enlaza el frontend (Vite) con el backend (Express).
-- **Despliegue dual**: compatible con hosting combinado o independiente (Render + Vercel).
-- **Migración entre modos**: el interruptor `USE_MONGO` permite cambiar de Mongo a JSON sin alterar la interfaz.
+Daniela Ávalos
 
-El resultado es un proyecto funcional, escalable y defendible, que refleja los conocimientos adquiridos y las prácticas recomendadas por la UTN.
+Mauro Britez
 
----
+Leandro Pinazo
 
-✅ **Conclusión final:**  
-El proyecto **cumple en su totalidad con los requerimientos del Trabajo Práctico Integrador Frontend y Backend 2025**, aplicando las tecnologías, buenas prácticas y conceptos teóricos vistos en la cursada (ruteo, asincronismo, validación, manejo de estado, consumo de APIs y persistencia en base de datos).
+Griselda Molina
 
-
-## Créditos
-
-**Grupo 8 — Diplomatura Desarrollo Web I 2025 (UTN)**  
-**Integrantes:** Axel Chamorro· Magalí Izaurralde· Diego Farías · Daniela Ávalos · Mauro Britez .Leandro Pinazo. Griselda Molina  
-**Profesor:** Axel Leonardi
+Profesor: Axel Leonardi

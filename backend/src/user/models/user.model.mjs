@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
     id: { type: String, index: true }, // id "corto" que ya usa el front
     name: String,
     email: { type: String, unique: true, index: true },
-    phone: String,
+    phone: { type: String, default: "",  trim: true, },
     password: String, // hash
     role: { type: String, default: "user" },
   },

@@ -37,7 +37,7 @@ export async function registerHandler(req, res) {
       name,
       email: emailL,
       password: hash,
-      phone: phone || "",
+      phone: phone ? phone.trim() : "",
       role,
     });
 
@@ -87,6 +87,7 @@ export async function loginHandler(req, res) {
       email: emailL,
       role,
       name: user.name,
+      phone: user.phone || "",
     });
 
     const { id, name, phone } = user;

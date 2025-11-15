@@ -40,15 +40,35 @@ export async function getOrderByIdHandler(req, res) {
  * POST /api/orders
  */
 export async function createOrderHandler(req, res) {
+  const user = req.user || {};         // usuario logueado (si hay)
   const body = req.body || {};
 
+  // id y fecha
   if (!body.id) body.id = crypto.randomUUID().slice(0, 8);
   if (!body.createdAt) body.createdAt = new Date();
-  if (!body.customerName) body.customerName = body.customer || "";
+
+  // nombre del cliente
+  if (!body.customerName) {
+    body.customerName = body.customer || user.name || "";
+  }
+
+  // email del cliente
+  if (!body.customerEmail) {
+    body.customerEmail = body.email || user.email || "";
+  }
+
+  // teléfono del cliente
+  if (!body.phone) {
+    body.phone = body.phone || user.phone || "";
+  }
 
   const created = await Order.create(body);
   res.status(201).json(created);
 }
+
+
+
+
 
 /**
  * PUT /api/orders/:id

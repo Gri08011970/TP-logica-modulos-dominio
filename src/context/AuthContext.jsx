@@ -1,12 +1,18 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { login as apiLogin, signup as apiSignup, logout as apiLogout, getSavedAuth, isAdminUser } from "../services/auth";
+import {
+  login as apiLogin,
+  signup as apiSignup,
+  logout as apiLogout,
+  getSavedAuth,
+  isAdminUser,
+} from "../services/auth";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // Cargar sesión guardada (si existe) al montar
+  // Cargar sesión guardada (si existe)
   useEffect(() => {
     const saved = getSavedAuth();
     if (saved?.user) {
@@ -15,33 +21,43 @@ export function AuthProvider({ children }) {
   }, []);
 
   const isLogged = !!user;
-  const isAdmin  = isAdminUser(user);
+  const isAdmin = isAdminUser(user);
 
+  // LOGIN
   async function login({ email, password }) {
     const u = await apiLogin({ email, password });
     setUser(u);
     return u;
   }
 
-  async function signup({ name, email, password, phone }) {
+  // REGISTER (signup)  ---> acá viaja el teléfono
+  async function register({ name, email, password, phone }) {
     const u = await apiSignup({ name, email, password, phone });
     setUser(u);
     return u;
   }
 
+  // alias por si en algún lado se usa "signup"
+  const signup = register;
+
+  // LOGOUT
   async function logout() {
     await apiLogout();
     setUser(null);
   }
 
-  const value = useMemo(() => ({
-    user,
-    isLogged,
-    isAdmin,
-    login,
-    signup,
-    logout,
-  }), [user, isLogged, isAdmin]);
+  const value = useMemo(
+    () => ({
+      user,
+      isLogged,
+      isAdmin,
+      login,
+      register, // 👈 lo que usás en RegisterPage
+      signup,   // alias opcional
+      logout,
+    }),
+    [user, isLogged, isAdmin]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
@@ -49,4 +65,3 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
-
