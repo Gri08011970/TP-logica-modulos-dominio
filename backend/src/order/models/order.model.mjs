@@ -5,7 +5,7 @@ const itemSchema = new mongoose.Schema(
     id: String,     // product.id
     name: String,
     price: Number,
-    qty: Number
+    qty: Number,
   },
   { _id: false }
 );
@@ -20,7 +20,7 @@ const orderSchema = new mongoose.Schema(
     total: Number,
     status: { type: String, default: "pendiente" },
     createdAt: { type: Date, default: Date.now },
-    items: [itemSchema]
+    items: [itemSchema],
   },
   { timestamps: true }
 );

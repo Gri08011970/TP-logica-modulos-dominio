@@ -66,7 +66,12 @@ app.use(express.json());
 // ------------------- STATIC IMAGES -------------------
 const imagesDir = path.join(__dirname, "..", "public", "images");
 console.log("[IMAGES DIR]", imagesDir);
+
+// imágenes sin /api (por si las usa el front directo)
 app.use("/images", express.static(imagesDir));
+
+// imágenes con /api (coincide con VITE_API_URL + /images/...)
+app.use("/api/images", express.static(imagesDir));
 
 // ------------------- VALIDATOR HELPER -------------------
 function validateOr400(req, res, next) {

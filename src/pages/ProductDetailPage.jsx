@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../services/products.js";
 import { useCart } from "../context/CartContext.jsx";
+import { getImageUrl } from "../services/imageUrl.js";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -35,9 +36,9 @@ export default function ProductDetailPage() {
     <section className="grid md:grid-cols-2 gap-6">
       <div className="rounded-2xl overflow-hidden bg-white border">
         <img
-          src={p.image}
+          src={getImageUrl(p.image)}
           alt={p.name}
-          className="w-full h-[480px] object-cover"
+          className="w-full max-w-md rounded-xl border bg-white"
         />
       </div>
 
@@ -48,7 +49,6 @@ export default function ProductDetailPage() {
           $ {Number(p.price || 0).toLocaleString("es-AR")}
         </p>
 
-        {/* CONTENEDOR DEL CTA */}
         <div className="rounded-2xl border bg-white p-4 max-w-sm">
           <button onClick={onAdd} className="btn-primary w-full">
             Agregar al carrito
@@ -61,4 +61,3 @@ export default function ProductDetailPage() {
     </section>
   );
 }
-

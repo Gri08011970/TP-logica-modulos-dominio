@@ -1,27 +1,64 @@
+// backend/src/product/routes/product.routes.mjs
 import { Router } from "express";
+
 import {
-  getAllProducts,
-  getProductById,
-  createProduct,
-  updateProduct,
-  deleteProduct
+  listProductsHandler,
+  getProductByIdHandler,
+  createProductHandler,
+  updateProductHandler,
+  deleteProductHandler,
 } from "../handlers/product.handlers.mjs";
+
+import {
+  authRequired,
+  adminOnly,
+} from "../../shared/middlewares/auth.mjs";
+
+import {
+  validateProductListQuery,
+  validateProductIdParam,
+  validateProductCreate,
+  validateProductUpdate,
+  validateProductDelete,
+} from "../validations/product.validation.mjs";
 
 const router = Router();
 
-// Listado general + por categoría + paginado
-router.get("/", getAllProducts);
+// ================== Rutas públicas ==================
 
-// Detalle
-router.get("/:id", getProductById);
+// Lista de productos (con filtros/paginación)
+router.get("/", validateProductListQuery, listProductsHandler);
 
-// Crear producto (admin)
-router.post("/", createProduct);
+// Detalle de un producto
+router.get("/:id", validateProductIdParam, getProductByIdHandler);
 
-// Editar producto
-router.put("/:id", updateProduct);
+// ================== Rutas protegidas (admin) ==================
 
-// Eliminar producto
-router.delete("/:id", deleteProduct);
+// Crear producto (solo admin)
+router.post(
+  "/",
+  authRequired,
+  adminOnly,
+  validateProductCreate,
+  createProductHandler
+);
+
+// Actualizar producto (solo admin)
+router.put(
+  "/:id",
+  authRequired,
+  adminOnly,
+  validateProductUpdate,
+  updateProductHandler
+);
+
+// Eliminar producto (solo admin)
+router.delete(
+  "/:id",
+  authRequired,
+  adminOnly,
+  validateProductDelete,
+  deleteProductHandler
+);
 
 export default router;

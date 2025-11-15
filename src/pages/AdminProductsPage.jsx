@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import * as api from "../services/products.js";
 import Pagination from "../components/Pagination.jsx";
+import { getImageUrl } from "../services/imageUrl.js";
 
-const empty = { name: "", price: "", category: "", subcategory: "", image: "", description: "" };
+const empty = {
+  name: "",
+  price: "",
+  category: "",
+  subcategory: "",
+  image: "",
+  description: "",
+};
 
 export default function AdminProductsPage() {
   const [page, setPage] = useState(1);
@@ -25,7 +33,9 @@ export default function AdminProductsPage() {
     }
   }
 
-  useEffect(() => { load(); }, [page]);
+  useEffect(() => {
+    load();
+  }, [page]);
 
   function onChange(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -69,21 +79,66 @@ export default function AdminProductsPage() {
     <section className="container mx-auto max-w-6xl px-4 py-6">
       <h1 className="text-2xl font-semibold mb-6">Productos (ABMC)</h1>
 
-      <form onSubmit={onSubmit} className="bg-white border rounded-2xl p-4 grid sm:grid-cols-2 gap-3 mb-6">
-        <input className="border rounded px-3 py-2" placeholder="Nombre" value={form.name} onChange={e=>onChange("name",e.target.value)} required />
-        <input className="border rounded px-3 py-2" placeholder="Precio" value={form.price} onChange={e=>onChange("price",e.target.value)} required inputMode="decimal" />
-        <input className="border rounded px-3 py-2" placeholder="Categoría (mujer/hombre/unisex)" value={form.category} onChange={e=>onChange("category",e.target.value)} required />
-        <input className="border rounded px-3 py-2" placeholder="Subcategoría (jeans, remeras…)" value={form.subcategory} onChange={e=>onChange("subcategory",e.target.value)} />
-        <input className="border rounded px-3 py-2 sm:col-span-2" placeholder="URL de imagen" value={form.image} onChange={e=>onChange("image",e.target.value)} />
-        <textarea className="border rounded px-3 py-2 sm:col-span-2" placeholder="Descripción" value={form.description} onChange={e=>onChange("description",e.target.value)} />
-        {!!error && <p className="sm:col-span-2 text-red-600 text-sm">{error}</p>}
+      <form
+        onSubmit={onSubmit}
+        className="bg-white border rounded-2xl p-4 grid sm:grid-cols-2 gap-3 mb-6"
+      >
+        <input
+          className="border rounded px-3 py-2"
+          placeholder="Nombre"
+          value={form.name}
+          onChange={(e) => onChange("name", e.target.value)}
+          required
+        />
+        <input
+          className="border rounded px-3 py-2"
+          placeholder="Precio"
+          value={form.price}
+          onChange={(e) => onChange("price", e.target.value)}
+          required
+          inputMode="decimal"
+        />
+        <input
+          className="border rounded px-3 py-2"
+          placeholder="Categoría (mujer/hombre/unisex)"
+          value={form.category}
+          onChange={(e) => onChange("category", e.target.value)}
+          required
+        />
+        <input
+          className="border rounded px-3 py-2"
+          placeholder="Subcategoría (jeans, remeras…)"
+          value={form.subcategory}
+          onChange={(e) => onChange("subcategory", e.target.value)}
+        />
+        <input
+          className="border rounded px-3 py-2 sm:col-span-2"
+          placeholder="URL de imagen"
+          value={form.image}
+          onChange={(e) => onChange("image", e.target.value)}
+        />
+        <textarea
+          className="border rounded px-3 py-2 sm:col-span-2"
+          placeholder="Descripción"
+          value={form.description}
+          onChange={(e) => onChange("description", e.target.value)}
+        />
+        {!!error && (
+          <p className="sm:col-span-2 text-red-600 text-sm">{error}</p>
+        )}
         <div className="sm:col-span-2 flex gap-2">
           <button className="bg-indigo-600 text-white rounded px-4 py-2">
             {editingId ? "Guardar cambios" : "Crear producto"}
           </button>
           {editingId && (
-            <button type="button" className="border rounded px-4 py-2"
-                    onClick={() => { setEditingId(null); setForm(empty); }}>
+            <button
+              type="button"
+              className="border rounded px-4 py-2"
+              onClick={() => {
+                setEditingId(null);
+                setForm(empty);
+              }}
+            >
               Cancelar edición
             </button>
           )}
@@ -108,17 +163,40 @@ export default function AdminProductsPage() {
                 {data.items.map((p) => (
                   <tr key={p.id} className="border-t align-top">
                     <td className="p-3 flex gap-3 items-center">
-                      {p.image && <img src={p.image} alt={p.name} className="w-12 h-12 object-cover rounded" />}
+                      {p.image && (
+                        <img
+                          src={getImageUrl(p.image)}
+                          alt={p.name}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+                      )}
                       <div>
                         <div className="font-medium">{p.name}</div>
-                        {p.description && <div className="text-gray-500 line-clamp-2 max-w-[40ch]">{p.description}</div>}
+                        {p.description && (
+                          <div className="text-gray-500 line-clamp-2 max-w-[40ch]">
+                            {p.description}
+                          </div>
+                        )}
                       </div>
                     </td>
                     <td className="p-3">${p.price}</td>
-                    <td className="p-3">{p.category}{p.subcategory ? ` / ${p.subcategory}` : ""}</td>
+                    <td className="p-3">
+                      {p.category}
+                      {p.subcategory ? ` / ${p.subcategory}` : ""}
+                    </td>
                     <td className="p-3 flex gap-2">
-                      <button className="px-2 py-1 border rounded" onClick={() => onEdit(p)}>Editar</button>
-                      <button className="px-2 py-1 border rounded" onClick={() => onDelete(p.id)}>Eliminar</button>
+                      <button
+                        className="px-2 py-1 border rounded"
+                        onClick={() => onEdit(p)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="px-2 py-1 border rounded"
+                        onClick={() => onDelete(p.id)}
+                      >
+                        Eliminar
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -127,7 +205,11 @@ export default function AdminProductsPage() {
           </div>
 
           <div className="mt-4">
-            <Pagination page={page} totalPages={data.totalPages} onPageChange={setPage} />
+            <Pagination
+              page={page}
+              totalPages={data.totalPages}
+              onPageChange={setPage}
+            />
           </div>
         </>
       )}

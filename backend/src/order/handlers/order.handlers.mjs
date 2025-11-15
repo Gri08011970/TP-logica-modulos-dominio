@@ -1,6 +1,6 @@
 // backend/src/order/handlers/order.handlers.mjs
 import crypto from "node:crypto";
-import { Order } from "../../../models/order.mjs";
+import { Order } from "../models/order.model.mjs";
 
 /**
  * GET /api/orders

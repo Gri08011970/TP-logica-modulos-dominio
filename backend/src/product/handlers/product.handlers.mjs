@@ -1,33 +1,56 @@
 // backend/src/product/handlers/product.handlers.mjs
-import { Product } from "../../../models/product.mjs";
+import crypto from "node:crypto";
+import { Product } from "../models/product.model.mjs";
 import { findProducts } from "../repositories/product.repositories.mjs";
+import { formatPagination } from "../../shared/utils/formatPagination.mjs";
+import { logger } from "../../shared/utils/logger.mjs";
 
 /**
  * GET /api/products
  * Lista con filtros + paginado (category, subcategory, page, limit)
  */
-export async function getAllProducts(req, res) {
+export async function listProductsHandler(req, res) {
   try {
     const { category, subcategory, page = 1, limit = 6 } = req.query;
 
+    const pageNum = Number(page) || 1;
+    const limitNum = Number(limit) || 6;
+
+    logger.info("Listando productos", {
+      page: pageNum,
+      limit: limitNum,
+      category,
+      subcategory,
+    });
+
+    // Usamos tu repositorio actual
     const { products, total, totalPages } = await findProducts({
       category,
       subcategory,
-      page: Number(page) || 1,
-      limit: Number(limit) || 6,
+      page: pageNum,
+      limit: limitNum,
     });
 
-    res.json({
-      total,
-      page: Number(page) || 1,
-      totalPages,
-      products,
+    // Adaptado a tu helper genérico de paginación
+    const payload = formatPagination({
+      docs: products,
+      totalDocs: total,
+      page: pageNum,
+      limit: limitNum,
+      extra: { totalPages },
     });
+
+    return res.json(payload);
   } catch (err) {
-    console.error("[getAllProducts] error:", err);
-    res.status(500).json({ message: "Error al listar productos" });
+    logger.error("[listProductsHandler] error:", err);
+    return res
+      .status(500)
+      .json({ message: "Error interno al listar productos" });
   }
 }
+
+// Alias para mantener compatibilidad con el nombre anterior
+export const getAllProducts = listProductsHandler;
 
 /**
  * GET /api/products/:id
@@ -36,16 +59,19 @@ export async function getAllProducts(req, res) {
 export async function getProductById(req, res) {
   try {
     const { id } = req.params;
+
     const product = await Product.findOne({ id: String(id) }).lean();
 
     if (!product) {
       return res.status(404).json({ message: "Producto no encontrado" });
     }
 
-    res.json(product);
+    return res.json(product);
   } catch (err) {
-    console.error("[getProductById] error:", err);
-    res.status(500).json({ message: "Error al obtener producto" });
+    logger.error("[getProductById] error:", err);
+    return res
+      .status(500)
+      .json({ message: "Error interno al obtener producto" });
   }
 }
 
@@ -55,14 +81,18 @@ export async function getProductById(req, res) {
 export async function createProduct(req, res) {
   try {
     const data = req.body || {};
+
     if (!data.id) {
       data.id = crypto.randomUUID().slice(0, 8);
     }
+
     const created = await Product.create(data);
-    res.status(201).json(created);
+    return res.status(201).json(created);
   } catch (err) {
-    console.error("[createProduct] error:", err);
-    res.status(500).json({ message: "Error al crear producto" });
+    logger.error("[createProduct] error:", err);
+    return res
+      .status(500)
+      .json({ message: "Error interno al crear producto" });
   }
 }
 
@@ -72,6 +102,7 @@ export async function createProduct(req, res) {
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
+
     const updated = await Product.findOneAndUpdate(
       { id: String(id) },
       req.body,
@@ -82,10 +113,12 @@ export async function updateProduct(req, res) {
       return res.status(404).json({ message: "Producto no encontrado" });
     }
 
-    res.json(updated);
+    return res.json(updated);
   } catch (err) {
-    console.error("[updateProduct] error:", err);
-    res.status(500).json({ message: "Error al actualizar producto" });
+    logger.error("[updateProduct] error:", err);
+    return res
+      .status(500)
+      .json({ message: "Error interno al actualizar producto" });
   }
 }
 
@@ -96,9 +129,17 @@ export async function deleteProduct(req, res) {
   try {
     const { id } = req.params;
     await Product.deleteOne({ id: String(id) });
-    res.sendStatus(204);
+    return res.sendStatus(204);
   } catch (err) {
-    console.error("[deleteProduct] error:", err);
-    res.status(500).json({ message: "Error al eliminar producto" });
+    logger.error("[deleteProduct] error:", err);
+    return res
+      .status(500)
+      .json({ message: "Error interno al eliminar producto" });
   }
 }
+
+// Aliases con sufijo Handler para usarlos desde las rutas nuevas
+export const getProductByIdHandler = getProductById;
+export const createProductHandler = createProduct;
+export const updateProductHandler = updateProduct;
+export const deleteProductHandler = deleteProduct;

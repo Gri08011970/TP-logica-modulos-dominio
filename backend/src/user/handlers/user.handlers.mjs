@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "node:crypto";
 import { validationResult } from "express-validator";
-import { User } from "../../../models/user.mjs";
+import { User } from "../models/user.model.mjs";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || "admin@tienda.com").toLowerCase();

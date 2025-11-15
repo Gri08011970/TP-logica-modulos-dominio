@@ -1,5 +1,5 @@
 // backend/src/product/repositories/product.repositories.mjs
-import { Product } from "../../../models/product.mjs";
+import { Product } from "../models/product.model.mjs";
 
 
 

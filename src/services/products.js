@@ -54,7 +54,33 @@ export async function listProducts(params = {}) {
     } else {
       totalPages = Math.max(1, Math.ceil(total / limit));
     }
-  } else {
+  }
+  // 🧩 MODO 3: respuesta con { items, totalItems, totalPages }
+  else if (data && Array.isArray(data.items)) {
+    items = data.items;
+
+    // total puede venir como totalItems o total
+    if (typeof data.totalItems === "number") {
+      total = data.totalItems;
+    } else if (data.totalItems) {
+      total = Number(data.totalItems);
+    } else if (typeof data.total === "number") {
+      total = data.total;
+    } else if (data.total) {
+      total = Number(data.total);
+    } else {
+      total = items.length;
+    }
+
+    if (typeof data.totalPages === "number") {
+      totalPages = data.totalPages;
+    } else if (data.totalPages) {
+      totalPages = Number(data.totalPages);
+    } else {
+      totalPages = Math.max(1, Math.ceil(total / limit));
+    }
+  }
+  else {
     // Por si alguna vez cambia la API, al menos lo vemos en consola
     console.warn("Respuesta inesperada en listProducts:", data);
     items = [];
@@ -62,6 +88,7 @@ export async function listProducts(params = {}) {
     totalPages = 1;
   }
 
+  
   return { items, total, totalPages };
 }
 
