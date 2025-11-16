@@ -44,6 +44,13 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 
 ---
 
+# Admin por defecto
+ADMIN_EMAIL=admin@tienda.com
+
+# Usurio prueba
+EMAIL=grisel@gmail.com
+password=gri123
+---
 ## 🧩 Estructura del Proyecto
 
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
