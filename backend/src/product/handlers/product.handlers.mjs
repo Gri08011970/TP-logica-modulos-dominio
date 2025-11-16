@@ -1,4 +1,3 @@
-// backend/src/product/handlers/product.handlers.mjs
 import crypto from "node:crypto";
 import { Product } from "../models/product.model.mjs";
 import { findProducts } from "../repositories/product.repositories.mjs";
@@ -23,7 +22,7 @@ export async function listProductsHandler(req, res) {
       subcategory,
     });
 
-    // Usamos tu repositorio actual
+    // Usamos repositorio actual
     const { products, total, totalPages } = await findProducts({
       category,
       subcategory,
@@ -31,7 +30,7 @@ export async function listProductsHandler(req, res) {
       limit: limitNum,
     });
 
-    // Adaptado a tu helper genérico de paginación
+    // Adaptado al helper genérico de paginación
     const payload = formatPagination({
       docs: products,
       totalDocs: total,

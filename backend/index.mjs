@@ -92,7 +92,7 @@ if (USE_MONGO) {
   app.use("/api/products", productRoutes);
   app.use("/api/orders", orderRoutes);
 
-  // (opcional) montar tus rutas legacy si hacen falta
+
 }
 
 // ------------------- MODO JSON -------------------

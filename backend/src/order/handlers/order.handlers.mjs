@@ -1,10 +1,8 @@
-// backend/src/order/handlers/order.handlers.mjs
 import crypto from "node:crypto";
 import { Order } from "../models/order.model.mjs";
 
 /**
  * GET /api/orders
- * Lista de órdenes con filtros: ?status=...&from=YYYY-MM-DD&to=YYYY-MM-DD
  */
 export async function listOrdersHandler(req, res) {
   const { status, from, to } = req.query || {};
@@ -65,10 +63,6 @@ export async function createOrderHandler(req, res) {
   const created = await Order.create(body);
   res.status(201).json(created);
 }
-
-
-
-
 
 /**
  * PUT /api/orders/:id

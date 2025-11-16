@@ -1,8 +1,4 @@
-// backend/src/product/repositories/product.repositories.mjs
 import { Product } from "../models/product.model.mjs";
-
-
-
 
 export async function findProducts({ category, page, limit }) {
   const filter = {};

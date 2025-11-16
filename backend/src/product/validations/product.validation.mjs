@@ -1,4 +1,4 @@
-// backend/src/product/validations/product.validation.mjs
+
 import { body, param, query } from "express-validator";
 import { validateOr400 } from "../../shared/middlewares/validation.mjs";
 

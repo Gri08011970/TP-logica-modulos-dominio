@@ -23,7 +23,7 @@ function getAuthHeaders() {
   if (!saved) return {};
   const headers = {};
   if (saved.token) headers.Authorization = `Bearer ${saved.token}`;
-  // 👉 Enviamos el email para que el backend pueda decidir si es admin
+  //  Enviamos el email para que el backend pueda decidir si es admin
   if (saved.user?.email) headers["X-User-Email"] = saved.user.email;
   return headers;
 }

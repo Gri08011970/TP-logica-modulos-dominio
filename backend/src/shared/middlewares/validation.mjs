@@ -1,4 +1,3 @@
-// backend/src/shared/middlewares/validation.mjs
 import { validationResult } from "express-validator";
 
 export function validateOr400(req, res, next) {

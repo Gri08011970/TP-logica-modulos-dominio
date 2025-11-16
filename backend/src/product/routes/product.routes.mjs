@@ -1,4 +1,4 @@
-// backend/src/product/routes/product.routes.mjs
+
 import { Router } from "express";
 
 import {

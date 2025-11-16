@@ -1,4 +1,3 @@
-// src/components/ProductCard.jsx
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../services/imageUrl.js";
 

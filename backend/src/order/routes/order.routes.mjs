@@ -1,4 +1,3 @@
-// backend/src/order/routes/order.routes.mjs
 import { Router } from "express";
 import { body } from "express-validator";
 import { validateOr400 } from "../../shared/middlewares/validation.mjs";

@@ -14,7 +14,7 @@ import { validateOr400 } from "../../shared/middlewares/validation.mjs";
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
 
-// authRequired para /profile (y lo que quieras agregar)
+// authRequired para /profile 
 function authRequired(req, res, next) {
   try {
     const auth = req.header("Authorization") || "";

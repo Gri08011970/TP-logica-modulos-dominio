@@ -1,4 +1,3 @@
-// src/services/products.js
 import { API_URL, apiFetch } from "./api.js";
 
 /**
@@ -81,7 +80,7 @@ export async function listProducts(params = {}) {
     }
   }
   else {
-    // Por si alguna vez cambia la API, al menos lo vemos en consola
+    // Por si cambiamos la API, al menos lo vemos en consola
     console.warn("Respuesta inesperada en listProducts:", data);
     items = [];
     total = 0;

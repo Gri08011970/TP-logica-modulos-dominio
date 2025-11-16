@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
     return u;
   }
 
-  // REGISTER (signup)  ---> acá viaja el teléfono
+  // REGISTER (signup) 
   async function register({ name, email, password, phone }) {
     const u = await apiSignup({ name, email, password, phone });
     setUser(u);
@@ -52,8 +52,8 @@ export function AuthProvider({ children }) {
       isLogged,
       isAdmin,
       login,
-      register, // 👈 lo que usás en RegisterPage
-      signup,   // alias opcional
+      register, 
+      signup,   
       logout,
     }),
     [user, isLogged, isAdmin]

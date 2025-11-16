@@ -1,4 +1,3 @@
-// backend/src/shared/middlewares/auth.mjs
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
