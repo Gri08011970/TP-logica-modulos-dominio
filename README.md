@@ -65,7 +65,7 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
 
 🌳 Estructura del Proyecto
-.
+```
 ├── .env
 ├── .env.example
 ├── .eslintrc.json
@@ -172,7 +172,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
     │   └── index.css
     ├── App.jsx
     └── main.jsx
-
+```
 ---
 
 **⚙️ Configuración de entorno** 
