@@ -48,64 +48,114 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
 
-
-TP-logica-modulos-dominio/
+🌳 Estructura del Proyecto
+.
+├── .env
+├── .env.example
+├── .eslintrc.json
+├── .gitignore
+├── .nvmrc
+├── db.json
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+├── vite.config.js
 ├── backend/
-│   ├── index.mjs              # Punto de entrada de la API
-│   ├── db.mjs                 # Conexión a MongoDB
-│   ├── src/
-│   │   ├── product.mjs
-│   │   ├── order.mjs
-│   │   └── user.mjs
-│   ├── routes/
-│   │   ├── products.mjs
-│   │   ├── orders.mjs
-│   │   └── auth.mjs
-│   └── logs/                  # Logs de la API
-│
+│   ├── docs/
+│   ├── logs/
+│   ├── node_modules/
+│   └── src/
+│       ├── order/
+│       │   ├── handlers/
+│       │   │   └── order.handlers.mjs
+│       │   ├── models/
+│       │   │   └── order.model.mjs
+│       │   ├── repositories/
+│       │   ├── routes/
+│       │   │   └── order.routes.mjs
+│       │   └── validations/
+│       ├── product/
+│       │   ├── handlers/
+│       │   │   └── product.handlers.mjs
+│       │   ├── models/
+│       │   │   └── product.model.mjs
+│       │   ├── repositories/
+│       │   │   └── product.repositories.mjs
+│       │   ├── routes/
+│       │   │   └── product.routes.mjs
+│       │   └── validations/
+│       │       └── product.validation.mjs
+│       ├── shared/
+│       │   ├── constants/
+│       │   ├── middlewares/
+│       │   ├── utils/
+│       │   │   ├── formatPagination.mjs
+│       │   │   ├── logger.mjs
+│       │   │   └── validatedId.mjs
+│       │   ├── auth.mjs
+│       │   └── validation.mjs
+│       ├── user/
+│       │   ├── handlers/
+│       │   │   └── user.handlers.mjs
+│       │   ├── models/
+│       │   │   └── user.model.mjs
+│       │   ├── repositories/
+│       │   ├── routes/
+│       │   │   └── user.routes.mjs
+│       │   └── validations/
+│       ├── db.mjs
+│       └── index.mjs
 ├── public/
 │   ├── images/
 │   │   ├── hombre/
 │   │   ├── mujer/
 │   │   └── unisex/
-│   └── favicon-32.png
-│
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── Pagination.jsx
-│   │   └── ...
-│   ├── pages/
-│   │   ├── HomePage.jsx
-│   │   ├── CategoriesPage.jsx
-│   │   ├── CategoryDetailPage.jsx
-│   │   ├── ProductDetailPage.jsx
-│   │   ├── CartPage.jsx
-│   │   ├── AdminProductsPage.jsx
-│   │   ├── AdminOrdersPage.jsx
-│   │   ├── LoginPage.jsx
-│   │   └── RegisterPage.jsx
-│   ├── services/
-│   │   ├── api.js             # Configuración Axios / fetch
-│   │   ├── products.js        # Llamadas a /api/products
-│   │   ├── orders.js          # Llamadas a /api/orders
-│   │   ├── auth.js            # Login / registro
-│   │   └── imageUrl.js        # Armado de URLs de imágenes
-│   ├── styles/
-│   │   └── index.css
-│   ├── App.jsx
-│   └── main.jsx
-│
+│   ├── favicon-32.png
+│   ├── favicon-64.png
+│   ├── gorra-01.webp
+│   ├── logo.svg
+│   ├── logo_gif_gear_128.png
+│   ├── logo_gif_wordmark_indigo.png
+│   └── _redirects
 ├── scripts/
-│   └── migrate-from-json.mjs  # Script de migración desde db.json a MongoDB
-│
- 
-├── .env.example
-├── package.json
-├── vite.config.js
-└── README.md
+│   └── migrate-from-json.mjs
+└── src/
+    ├── assets/
+    │   └── react.svg
+    ├── components/
+    │   ├── Footer.jsx
+    │   ├── NavBar.jsx
+    │   ├── Pagination.jsx
+    │   └── ProductCard.jsx
+    ├── context/
+    │   ├── AuthContext.jsx
+    │   └── CartContext.jsx
+    ├── hooks/
+    │   ├── UseAuth.js
+    │   └── useFetch.js
+    ├── pages/
+    │   ├── AdminOrdersPage.jsx
+    │   ├── AdminProductsPage.jsx
+    │   ├── CartPage.jsx
+    │   ├── CategoriesPage.jsx
+    │   ├── CategoryDetailPage.jsx
+    │   ├── HomePage.jsx
+    │   ├── LoginPage.jsx
+    │   ├── ProductDetailPage.jsx
+    │   ├── RegisterPage.jsx
+    │   └── SignUpPage.jsx
+    ├── services/
+    │   ├── api.js
+    │   ├── auth.js
+    │   ├── imageUrl.js
+    │   ├── orders.js
+    │   ├── products.js
+    │   └── profile.js
+    ├── styles/
+    │   └── index.css
+    ├── App.jsx
+    └── main.jsx
 
 ⚙️ Configuración de entorno
 Backend – .env (local)
