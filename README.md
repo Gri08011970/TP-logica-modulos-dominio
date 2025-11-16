@@ -65,77 +65,67 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
 
 🌳 Estructura del Proyecto
-```
-├── .env
-├── .env.example
-├── .eslintrc.json
-├── .gitignore
-├── .nvmrc
-├── db.json
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md
-├── vite.config.js
+
+.
 ├── backend/
-│   ├── docs/
-│   ├── logs/
-│   ├── node_modules/
-│   └── src/
-│       ├── order/
-│       │   ├── handlers/
-│       │   │   └── order.handlers.mjs
-│       │   ├── models/
-│       │   │   └── order.model.mjs
-│       │   ├── repositories/
-│       │   ├── routes/
-│       │   │   └── order.routes.mjs
-│       │   └── validations/
-│       ├── product/
-│       │   ├── handlers/
-│       │   │   └── product.handlers.mjs
-│       │   ├── models/
-│       │   │   └── product.model.mjs
-│       │   ├── repositories/
-│       │   │   └── product.repositories.mjs
-│       │   ├── routes/
-│       │   │   └── product.routes.mjs
-│       │   └── validations/
-│       │       └── product.validation.mjs
-│       ├── shared/
-│       │   ├── constants/
-│       │   ├── middlewares/
-│       │   ├── utils/
-│       │   │   ├── formatPagination.mjs
-│       │   │   ├── logger.mjs
-│       │   │   └── validatedId.mjs
-│       │   ├── auth.mjs
-│       │   └── validation.mjs
-│       ├── user/
-│       │   ├── handlers/
-│       │   │   └── user.handlers.mjs
-│       │   ├── models/
-│       │   │   └── user.model.mjs
-│       │   ├── repositories/
-│       │   ├── routes/
-│       │   │   └── user.routes.mjs
-│       │   └── validations/
-│       ├── db.mjs
-│       └── index.mjs
+│ ├── docs/
+│ ├── logs/
+│ ├── node_modules/
+│ └── src/
+│     ├── order/
+│     │   ├── handlers/
+│     │   │   └── order.handlers.mjs
+│     │   ├── models/
+│     │   │   └── order.model.mjs
+│     │   ├── repositories/
+│     │   ├── routes/
+│     │   │   └── order.routes.mjs
+│     │   └── validations/
+│     ├── product/
+│     │   ├── handlers/
+│     │   │   └── product.handlers.mjs
+│     │   ├── models/
+│     │   │   └── product.model.mjs
+│     │   ├── repositories/
+│     │   │   └── product.repositories.mjs
+│     │   ├── routes/
+│     │   │   └── product.routes.mjs
+│     │   └── validations/
+│     │       └── product.validation.mjs
+│     ├── shared/
+│     │   ├── constants/
+│     │   ├── middlewares/
+│     │   ├── utils/
+│     │   │   ├── formatPagination.mjs
+│     │   │   ├── logger.mjs
+│     │   │   └── validatedId.mjs
+│     │   ├── auth.mjs
+│     │   └── validation.mjs
+│     ├── user/
+│     │   ├── handlers/
+│     │   │   └── user.handlers.mjs
+│     │   ├── models/
+│     │   │   └── user.model.mjs
+│     │   ├── repositories/
+│     │   ├── routes/
+│     │   │   └── user.routes.mjs
+│     │   └── validations/
+│     ├── db.mjs
+│     └── index.mjs
 ├── public/
-│   ├── images/
-│   │   ├── hombre/
-│   │   ├── mujer/
-│   │   └── unisex/
-│   ├── favicon-32.png
-│   ├── favicon-64.png
-│   ├── gorra-01.webp
-│   ├── logo.svg
-│   ├── logo_gif_gear_128.png
-│   ├── logo_gif_wordmark_indigo.png
-│   └── _redirects
+│ ├── images/
+│ │ ├── hombre/
+│ │ ├── mujer/
+│ │ └── unisex/
+│ ├── favicon-32.png
+│ ├── favicon-64.png
+│ ├── gorra-01.webp
+│ ├── logo.svg
+│ ├── logo_gif_gear_128.png
+│ ├── logo_gif_wordmark_indigo.png
+│ └── _redirects
 ├── scripts/
-│   └── migrate-from-json.mjs
+│ └── migrate-from-json.mjs
 └── src/
     ├── assets/
     │   └── react.svg
@@ -172,8 +162,17 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
     │   └── index.css
     ├── App.jsx
     └── main.jsx
-```
----
+├── .env
+├── .env.example
+├── .eslintrc.json
+├── .gitignore
+├── .nvmrc
+├── db.json
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+└── vite.config.js
 
 **⚙️ Configuración de entorno** 
 Backend – .env (local)
