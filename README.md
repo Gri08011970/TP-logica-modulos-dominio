@@ -48,12 +48,12 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
 
-```text
+
 TP-logica-modulos-dominio/
 ├── backend/
 │   ├── index.mjs              # Punto de entrada de la API
 │   ├── db.mjs                 # Conexión a MongoDB
-│   ├── models/
+│   ├── src/
 │   │   ├── product.mjs
 │   │   ├── order.mjs
 │   │   └── user.mjs
@@ -101,20 +101,17 @@ TP-logica-modulos-dominio/
 ├── scripts/
 │   └── migrate-from-json.mjs  # Script de migración desde db.json a MongoDB
 │
-├── docs/
-│   ├── Informe_BACKEND_Grupo8UTN2025.html
-│   └── Informe_FRONTEND_Grupo8UTN2025.html
-│
+ 
 ├── .env.example
 ├── package.json
 ├── vite.config.js
 └── README.md
+
 ⚙️ Configuración de entorno
 Backend – .env (local)
 Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
 
-env
-Copiar código
+
 # Puerto interno de la API
 PORT=4001
 
@@ -139,14 +136,12 @@ LOG_ENABLED=true
 MORGAN_FORMAT=dev
 LOG_TO_FILE=false
 Frontend – .env (local)
-env
-Copiar código
+
 VITE_API_URL=http://localhost:4001/api
 Variables en producción (Railway)
 En Railway se usan las mismas claves, apuntando a producción. Ejemplo:
 
-env
-Copiar código
+
 USE_MONGO=true
 MONGO_URL=mongodb+srv://<usuario>:<password>@<cluster>/<nombreDB>?retryWrites=true&w=majority
 FRONT_ORIGIN=http://tp-logica-modulos-dominio-production.up.railway.app/
@@ -159,21 +154,19 @@ MORGAN_FORMAT=dev
 LOG_TO_FILE=false
 Estado típico del deploy:
 
-text
-Copiar código
+
+
 MongoDB conectado
 API escuchando en http://localhost:8080/api (USE_MONGO=true)
 🏃‍♀️ Puesta en marcha (local)
 Clonar el repo:
 
-bash
-Copiar código
+
 git clone https://github.com/Gri08011970/TP-logica-modulos-dominio.git
 cd TP-logica-modulos-dominio
 Instalar dependencias:
 
-bash
-Copiar código
+
 npm install
 Crear .env a partir de .env.example y completar:
 
@@ -185,8 +178,7 @@ etc.
 
 Ejecutar el entorno de desarrollo (API + frontend al mismo tiempo):
 
-bash
-Copiar código
+
 npm run dev
 Se levanta:
 
@@ -200,13 +192,11 @@ En este proyecto, Mongo Atlas es el modo principal.
 
 Simulación (no escribe):
 
-bash
-Copiar código
+
 npm run migrate:json:dry
 Migración real:
 
-bash
-Copiar código
+
 npm run migrate:json
 Esto crea/actualiza las colecciones users, products, orders en la base tp_grupal_utn.
 
@@ -342,34 +332,21 @@ Asociación de órdenes al usuario logueado.
 ### 13. MongoDB conectado (modo principal)
 ![13-MongoDBconectado](docs/capturas/13-mongodbconectado.png)
 
+### 14. MongoDB mostrar usuario
+![14-MongoDBmuestraUsuario](docs/capturas/14-mongodb.png)
 
+### 15. MongoDB mostrar producto
+![15-MongoDBmuestraProducto](docs/capturas/15-mongodbproducto.png)
+
+### 16. MongoDB mostrar compra
+![16-MongoDBmuestraCompra](docs/capturas/16-mongodbcompra.png)
 ---
 
-🧪 Informes técnicos (BACKEND / FRONTEND)
 
-En docs/ se incluyen dos informes HTML:
-
-docs/Informe_BACKEND_Grupo8UTN2025.html
-
-docs/Informe_FRONTEND_Grupo8UTN2025.html
-
-Allí se detallan:
-
-Decisiones de diseño
-
-Diagrama de módulos
-
-Esquema de datos
-
-Flujos principales de interacción
-
-Justificación de tecnologías
 
 ✅ Conclusiones
 
 Este proyecto:
-
-Reemplaza el archivo bd.json por una base MongoDB Atlas real.
 
 Centraliza la lógica de negocio en una API REST con módulos bien separados.
 
