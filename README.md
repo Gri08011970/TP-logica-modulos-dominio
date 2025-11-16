@@ -353,12 +353,12 @@ Asociación de órdenes al usuario logueado.
 
 ### 06. Edición confirmada
 ![06-editarProducto-200Red](docs/capturas/06-editarproducto-200Red.png)
-![06-editarProductoRespuesta200Red](docs/capturas/06-editarProductoRespuesta200Red.png)
+![06-editarProductoRespuesta200Red](docs/capturas/06-editarproductorespuesta200Red.png)
 
 ### 07. Eliminación reflejada en listado
-![07-desaparicionProductoDelListado](docs/capturas/07-desaparicionproductodelListado.png)
+![07-desaparicionProductoDelListado](docs/capturas/07-desaparicionproductodellistado.png)
 ![07-productoEliminadoRespuestaRed](docs/capturas/07-productoeliminadorespuestared.png)
-![07-productoEliminarBermudaGabardinaHombre](docs\capturas\07-productoeliminarbermudagabardinahombre.png)
+![07-productoEliminarBermudaGabardinaHombre](docs/capturas/07-productoeliminarbermudagabardinahombre.png)
 
 ### 08. Carrito
 ![08-carrito](docs/capturas/08-carrito.png)
@@ -373,7 +373,7 @@ Asociación de órdenes al usuario logueado.
 
 ### 11. Cambios de estado
 ![11-cambioestadoDesplegable](docs/capturas/11-cambioestadodesplegable.png)
-![11-Red200](docs/capturas/11-Red200.png)
+![11-Red200](docs/capturas/11-red200.png)
 
 ### 12. Compra manual
 ![12-compraManualRed201](docs/capturas/12-compramanualred201.png)
