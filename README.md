@@ -66,7 +66,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 
 🌳 Estructura del Proyecto
 
-.
+```.
 ├── backend/
 │ ├── docs/
 │ ├── logs/
@@ -173,7 +173,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 ├── package-lock.json
 ├── README.md
 └── vite.config.js
-
+```
 **⚙️ Configuración de entorno** 
 Backend – .env (local)
 Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
