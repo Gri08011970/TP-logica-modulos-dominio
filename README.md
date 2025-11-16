@@ -119,7 +119,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 │ │ └── unisex/
 │ ├── favicon-32.png
 │ ├── favicon-64.png
-│ ├── gorra-01.webp
+│ 
 │ ├── logo.svg
 │ ├── logo_gif_gear_128.png
 │ ├── logo_gif_wordmark_indigo.png
