@@ -157,7 +157,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
     ├── App.jsx
     └── main.jsx
 
-⚙️ Configuración de entorno
+***⚙️ Configuración de entorno***
 Backend – .env (local)
 Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
 
@@ -202,15 +202,15 @@ ADMIN_EMAIL=admin@tienda.com
 LOG_ENABLED=true
 MORGAN_FORMAT=dev
 LOG_TO_FILE=false
-Estado típico del deploy:
 
 
+***Estado típico del deploy:***
 
 MongoDB conectado
 API escuchando en http://localhost:8080/api (USE_MONGO=true)
-🏃‍♀️ Puesta en marcha (local)
-Clonar el repo:
 
+***🏃‍♀️ Puesta en marcha (local)***
+Clonar el repo:
 
 git clone https://github.com/Gri08011970/TP-logica-modulos-dominio.git
 cd TP-logica-modulos-dominio
@@ -236,7 +236,7 @@ Frontend: http://localhost:5173
 
 API: http://localhost:4001/api
 
-🔄 Migración de datos desde db.json → Mongo
+*** Migración de datos desde db.json → Mongo***
 La API puede levantar datos desde Mongo o desde db.json.
 En este proyecto, Mongo Atlas es el modo principal.
 
@@ -250,7 +250,8 @@ Migración real:
 npm run migrate:json
 Esto crea/actualiza las colecciones users, products, orders en la base tp_grupal_utn.
 
-🔌 Endpoints principales de la API
+
+***🔌 Endpoints principales de la API***
 GET /api/products
 Listado paginado de productos, con filtros por category, subcategory y name.
 
@@ -281,7 +282,8 @@ Registro de nuevos usuarios.
 GET /api/images/...
 Servido estático de imágenes desde /public/images.
 
-🧩 Funcionalidades implementadas
+
+***🧩 Funcionalidades implementadas***
 Catálogo de productos
 Paginación en Home y Categorías.
 
@@ -394,7 +396,7 @@ Asociación de órdenes al usuario logueado.
 
 
 
-✅ Conclusiones
+***✅ Conclusiones***
 
 Este proyecto:
 
@@ -406,7 +408,7 @@ Permite un despliegue cercano a un caso real de producción usando Railway + Mon
 
 Estandariza el manejo de rutas de imágenes con un endpoint /api/images/... y una utilidad getImageUrl en el frontend.
 
-👥 Créditos / Integrantes
+***👥 Créditos / Integrantes***
 
 Grupo 8 – UTN 2025
 
