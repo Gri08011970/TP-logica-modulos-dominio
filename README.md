@@ -64,9 +64,9 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 
 Estructura principal siguiendo la separación **frontend (SPA)** y **backend (API)**:
 
-🌳 Estructura del Proyecto
-
-```.
+## 🌳 Estructura del Proyecto
+```
+.
 ├── backend/
 │ ├── docs/
 │ ├── logs/
@@ -95,12 +95,12 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 │     ├── shared/
 │     │   ├── constants/
 │     │   ├── middlewares/
-│     │   ├── utils/
-│     │   │   ├── formatPagination.mjs
-│     │   │   ├── logger.mjs
-│     │   │   └── validatedId.mjs
-│     │   ├── auth.mjs
-│     │   └── validation.mjs
+│     │   │   ├── auth.mjs
+│     │   │   └── validation.mjs
+│     │   └── utils/
+│     │       ├── formatPagination.mjs
+│     │       ├── logger.mjs
+│     │       └── validatedId.mjs
 │     ├── user/
 │     │   ├── handlers/
 │     │   │   └── user.handlers.mjs
@@ -119,7 +119,6 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 │ │ └── unisex/
 │ ├── favicon-32.png
 │ ├── favicon-64.png
-│ 
 │ ├── logo.svg
 │ ├── logo_gif_gear_128.png
 │ ├── logo_gif_wordmark_indigo.png
@@ -174,6 +173,7 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
 ├── README.md
 └── vite.config.js
 ```
+
 **⚙️ Configuración de entorno** 
 Backend – .env (local)
 Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
