@@ -353,7 +353,7 @@ Asociación de órdenes al usuario logueado.
 
 ### 06. Edición confirmada
 ![06-editarProducto-200Red](docs/capturas/06-editarproducto-red.png)
-![06-editarProductoRespuesta200Red](docs/capturas/06-editarproductorespuesta200red.png)
+![06-editarProductoRespuesta200Red](docs\capturas\06-editarproductorespuesta200red.png)
 
 ### 07. Eliminación reflejada en listado
 ![07-desaparicionProductoDelListado](docs/capturas/07-desaparicionproductodellistado.png)
