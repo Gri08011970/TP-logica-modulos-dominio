@@ -659,27 +659,10 @@
       "email": "griselmolina1970@gmail.com",
       "password": "$2b$10$6LwGOcSRLJkbqaNJBpwVuuG.cEnswS9SQZ6.OCbVK0yEbjtcEJ6tS",
       "id": "ffec",
+      "phone": "1569885950",
       "role": "user"
     },
-    {
-      "name": "Diego Agustín",
-      "email": "agustomysofi2013@hotmail.com",
-      "password": "$2b$10$8RKTL8aLJC27N55fsu7Ax.gd302spgSI0OHBoUFvFQeTWEjSXlNsG",
-      "id": "35c9"
-    },
-    {
-      "name": "Gri",
-      "email": "mmmm@gmail.com",
-      "password": "$2b$10$3Ok/AsSxCyVg.NrVrBMqM.4ytRf96/7QKsnUaUp1CcsDOEXA051.m",
-      "id": "002c"
-    },
-    {
-      "id": "8137",
-      "name": "gri",
-      "email": "gri@gmail.com",
-      "password": "$2b$10$qHTI/QKXpNQ9w.Pv0nSetO3KdWuXkSD1Aci1O8z.XgNRrHohMgpSu",
-      "phone": "1555885853"
-    },
+    
     {
       "id": "8512",
       "name": "Grupo 8 UTN",
@@ -712,22 +695,8 @@
       "phone": "1144558965",
       "role": "user"
     },
-    {
-      "id": "581a",
-      "name": "Marcela Castillo",
-      "email": "marce@gmail.com",
-      "password": "$2b$10$ohol45hiVvbGVk9yxkK0XO.spxAfc4I7KXxzDOZKFYEenjjVjqnCu",
-      "phone": "1144558965",
-      "role": "user"
-    },
-    {
-      "id": "cc1e",
-      "name": "Gri",
-      "email": "grimolina@gmail.com",
-      "password": "$2b$10$krcIsXbmrpp85GYb2wTXxusr495fReiuU/gUoQLlNMs9w1sCVaZBi",
-      "phone": "1154269875",
-      "role": "user"
-    },
+   
+   
     {
       "id": "c43c",
       "name": "Carlos Medina",

@@ -157,7 +157,9 @@ Estructura principal siguiendo la separación **frontend (SPA)** y **backend (AP
     ├── App.jsx
     └── main.jsx
 
-***⚙️ Configuración de entorno***
+---
+
+**⚙️ Configuración de entorno** 
 Backend – .env (local)
 Mongo es el modo principal → definir MONGO_URL y dejar USE_MONGO=true.
 
@@ -209,7 +211,8 @@ LOG_TO_FILE=false
 MongoDB conectado
 API escuchando en http://localhost:8080/api (USE_MONGO=true)
 
-***🏃‍♀️ Puesta en marcha (local)***
+
+**🏃‍♀️ Puesta en marcha (local)**
 Clonar el repo:
 
 git clone https://github.com/Gri08011970/TP-logica-modulos-dominio.git
@@ -236,6 +239,7 @@ Frontend: http://localhost:5173
 
 API: http://localhost:4001/api
 
+
 *** Migración de datos desde db.json → Mongo***
 La API puede levantar datos desde Mongo o desde db.json.
 En este proyecto, Mongo Atlas es el modo principal.
@@ -250,8 +254,10 @@ Migración real:
 npm run migrate:json
 Esto crea/actualiza las colecciones users, products, orders en la base tp_grupal_utn.
 
+---
 
-***🔌 Endpoints principales de la API***
+**🔌 Endpoints principales de la API**
+
 GET /api/products
 Listado paginado de productos, con filtros por category, subcategory y name.
 
@@ -283,17 +289,20 @@ GET /api/images/...
 Servido estático de imágenes desde /public/images.
 
 
-***🧩 Funcionalidades implementadas***
-Catálogo de productos
-Paginación en Home y Categorías.
+---
 
-Filtro por categoría (Mujer / Hombre / Unisex).
+## 🧩 Funcionalidades implementadas
 
-Subfiltros (jeans, remeras, bermudas, vestidos, etc.).
+### Catálogo de productos
+### Paginación en Home y Categorías.
 
-Vista de detalles con descripción, precio e imagen grande.
+### Filtro por categoría (Mujer / Hombre / Unisex).
 
-Carrito de compras
+ (jeans, remeras, bermudas, vestidos, etc.).
+
+ Vista de detalles con descripción, precio e imagen grande.
+
+### Carrito de compras
 Agregar / quitar productos.
 
 Modificar cantidades.
@@ -302,7 +311,7 @@ Cálculo de subtotal y total.
 
 Persistencia en localStorage.
 
-ABMC de productos (Admin)
+### ABMC de productos (Admin)
 Alta, baja, modificación y consulta de productos.
 
 Validaciones básicas en el formulario (campos obligatorios).
@@ -311,12 +320,12 @@ Integración directa con MongoDB (tp_grupal_utn.products).
 
 Previsualización de la imagen según la ruta relativa guardada.
 
-Órdenes
+### Órdenes
 Simulación de compra → se genera una orden en MongoDB.
 
 Visualización y cambio de estado de órdenes desde el panel de administración.
 
-Posibilidad de compra manual desde el admin (según consigna).
+Posibilidad de compra manual desde el admin 
 
 Autenticación
 Login de administrador con JWT.
@@ -326,6 +335,7 @@ Protección de rutas de administración.
 Asociación de órdenes al usuario logueado.
 
 
+---
 
 ## 📷 Evidencias del funcionamiento (con MongoDB)
 

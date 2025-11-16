@@ -30,7 +30,7 @@ export default function Navbar() {
             height="24"
           />
           <span className="text-xl font-semibold tracking-wide text-slate-900">
-            Tienda de <span className="text-indigo-600">ropa</span>
+          Tienda de <span className="text-indigo-600">ropa</span>
           </span>
         </Link>
 
