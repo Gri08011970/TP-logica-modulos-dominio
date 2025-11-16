@@ -44,12 +44,21 @@ Proyecto desplegado en **Railway** (Backend + Frontend integrados) usando **Mong
 
 ---
 
-# Admin por defecto
-ADMIN_EMAIL=admin@tienda.com
+## 🔑 Credenciales de Acceso de Prueba
 
-# Usurio prueba
-EMAIL=grisel@gmail.com
-password=gri123
+### 👨‍💻 Administrador por defecto
+
+| Campo | Valor |
+| :--- | :--- |
+| **Email** | `admin@tienda.com` |
+| **Password** | `utn123`  |
+
+### 👩‍💻 Usuario Común de Prueba
+
+| Campo | Valor |
+| :--- | :--- |
+| **Email** | `grisel@gmail.com` |
+| **Password** | `gri123` |
 ---
 ## 🧩 Estructura del Proyecto
 
