@@ -74,15 +74,20 @@ export async function getProductById(req, res) {
   }
 }
 
-/**
- * POST /api/products
- */
+// POST /api/products
 export async function createProduct(req, res) {
   try {
     const data = req.body || {};
 
     if (!data.id) {
       data.id = crypto.randomUUID().slice(0, 8);
+    }
+
+    if (data.category) {
+      data.category = String(data.category).trim().toLowerCase();
+    }
+    if (data.subcategory) {
+      data.subcategory = String(data.subcategory).trim().toLowerCase();
     }
 
     const created = await Product.create(data);
@@ -95,16 +100,22 @@ export async function createProduct(req, res) {
   }
 }
 
-/**
- * PUT /api/products/:id
- */
+// PUT /api/products/:id
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
+    const data = req.body || {};
+
+    if (data.category) {
+      data.category = String(data.category).trim().toLowerCase();
+    }
+    if (data.subcategory) {
+      data.subcategory = String(data.subcategory).trim().toLowerCase();
+    }
 
     const updated = await Product.findOneAndUpdate(
       { id: String(id) },
-      req.body,
+      data,
       { new: true }
     );
 
